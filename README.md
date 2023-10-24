@@ -14,6 +14,11 @@ doxygen
 gcov
 ccache
 ```
+
+After installing these clone the necessary submodules by running:
+```
+sh tools/init-submodules.sh
+```
 <br/>
 
 # Build instructions for development
