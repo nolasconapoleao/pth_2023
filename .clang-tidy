@@ -1,0 +1,17 @@
+---
+Checks:
+  '-*,
+  bugprone*,
+  cppcoreguidelines*,
+  hicpp*,
+  misc*,
+  modernize*,
+  performance*,
+  readability*,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -readability-else-after-return,
+  '
+WarningsAsErrors: '*'
+HeaderFilterRegex: ''
+FormatStyle: none
