@@ -7,3 +7,5 @@ build*
 
 # Developer files
 .draft
+
+src/my_keys.hpp

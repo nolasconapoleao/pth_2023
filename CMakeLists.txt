@@ -36,6 +36,7 @@ add_subdirectory(libs)
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   Custom::libsample
+  curl
 )
 
 # Advanced compilation options

@@ -1,0 +1,25 @@
+{
+  "name": "sepolia-testnet-deployment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon scripts/server.js",
+    "deploy": "npx hardhat run deployments/deploy.js --network sepolia",
+    "updatePrice": "npx hardhat run scripts/contract-interact.js",
+    "submitABI": "npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS 15000"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@nomiclabs/hardhat-waffle": "2.0.5",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.16.1"
+  },
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7"
+  }
+}
