@@ -1,8 +1,16 @@
 [submodule "external/catch2"]
 	path = external/catch2
 	url = https://github.com/catchorg/Catch2.git
-	branch = v2.x
+    branch = v2.x
+
+[submodule "external/ethereum-abi"]
+	path = external/ethereum-abi
+	url = https://github.com/GridPlus/ethereum-abi-c
+
+[submodule "external/curl"]
+	path = external/curl
+	url = https://github.com/curl/curl.git
 
 [submodule "tools/cmake"]
-	path = tools/cmake
-	url = https://github.com/nolasconapoleao/cmake-lib.git
+    path = tools/cmake
+    url = https://github.com/nolasconapoleao/cmake-lib.git
