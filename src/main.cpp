@@ -63,6 +63,17 @@ int main() {
    * 4. Publish payment confirmation to the blockchain
    * 
    */
+  nlohmann::json payment_confirmation;
+  payment_confirmation["customer"] = payment["description"];
+  InfInt quotient = payment_wei / price_wei;
+  int tier = log2(quotient.toInt());
+  if(tier < 0) {
+    tier = 0;
+    std::cout << "Tier bellow 0 should not happen" << std::endl;
+  }
+  payment_confirmation["amount"] = tier;
+  std::cout << "Request: " << payment_confirmation.dump() << std::endl;
+  post_request("localhost:4100", payment_confirmation.dump());
 
   // Payment adds address to vip list
 
