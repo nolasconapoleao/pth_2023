@@ -14,6 +14,12 @@ int main() {
    * 1. Request call to oracle to retrieve the conversion rate for USD/ETH
    * GET https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=ETH
    */
+  const std::string coin_rate_url = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
+  const std::string rate_response = get_request(coin_rate_url);
+
+  nlohmann::json rate = nlohmann::json::parse(rate_response);
+  InfInt ratio {rate["USD"].dump() };
+  std::cout << "Eth to Dollar: " << ratio << std::endl;
 
   /** 
     * 2. Request api call to stripe payment invoice
