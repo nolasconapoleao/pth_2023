@@ -5,6 +5,7 @@
 #include "my_keys.hpp"
 #include "InfInt.h"
 #include <cmath>
+#include "string_manipulation.hpp"
 
 #include <json/single_include/nlohmann/json.hpp>
 
@@ -39,6 +40,24 @@ int main() {
    * and payment details match the product intended
    * https://abi.hashex.org/
    */
+  const std::string contract_address = "0x3e7ad68720f22F2EcE8d376d2CFE419524C5108D";
+  const std::string price_url = "https://api-sepolia.etherscan.io/api?module=proxy&action=eth_call&to="+contract_address+"&data=0xb08d563c";
+  const std::string price_response = get_request(price_url);
+
+  nlohmann::json price = nlohmann::json::parse(price_response);
+  std::string hexString = removeLeadingZerosAnd0x(price["result"]);
+  uint32_t price_wei_uint = std::stoul(hexString, nullptr, 16);
+
+  InfInt payment_wei = payment_dollar * ratio * InfInt{"1000000000000000000"};
+  std::cout << "Payment in wei: " << payment_wei << std::endl;
+  InfInt price_wei {price_wei_uint};
+
+  if(price_wei < payment_wei) {
+    std::cout << "Transaction succeeded" << std::endl;
+  } else {
+    std::cout << "Payment bellow price" << std::endl;
+    return 1;
+  }
 
   /**
    * 4. Publish payment confirmation to the blockchain
