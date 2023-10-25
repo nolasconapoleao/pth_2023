@@ -2,6 +2,7 @@
 
 #include "libsample/MathUtils.h"
 #include "http_client.hpp"
+#include "my_keys.hpp"
 #include "InfInt.h"
 #include <cmath>
 
@@ -26,6 +27,12 @@ int main() {
     * curl https://api.stripe.com/v1/payment_intents/pi_3O4tGTDLtNgsHe8R0eYXmw1R \
     * -u STRIPE_API_KEY: \
     */
+  const std::string stripe_payment_url = "https://api.stripe.com/v1/payment_intents/pi_3O5FtUDLtNgsHe8R0TWA252C";
+  const std::string payment_response = get_request(stripe_payment_url, stripe_api_key);
+
+  nlohmann::json payment = nlohmann::json::parse(payment_response);
+  std::cout << "Payment: " << payment["amount"] << std::endl;
+  InfInt payment_dollar { payment["amount"].dump() };
 
   /**
    * 3. Check if the payment amount matches the membership price
